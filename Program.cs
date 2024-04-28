@@ -28,7 +28,7 @@
 
 	private void OutputIncorrectChars(string text, List<char> incorrectChars)
 	{
-		Console.WriteLine($"В введенной строек \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
+		Console.WriteLine($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
 	}
 }
 
