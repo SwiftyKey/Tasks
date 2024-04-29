@@ -1,4 +1,4 @@
-﻿using Tasks;
+using Tasks;
 using Tasks.Sorts;
 
 internal class MainClass
