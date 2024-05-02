@@ -1,5 +1,6 @@
-﻿using System.Text;
+using System.Text;
 using System.Text.RegularExpressions;
+using Tasks.RandomNumber;
 
 namespace Tasks
 {
@@ -42,6 +43,12 @@ namespace Tasks
 		{
 			Regex rg = new(@"[aeiouy][a-z]*[aeiouy]|[aeiouy]");
 			return rg.Match(text).Value;
+		}
+
+		public static (string, int) RemoveCharByRandomIndex(string text)
+		{
+			var index = RandomNumberApi.GetRandomNumber(text.Length);
+			return (text.Remove(index, 1), index);
 		}
 
 		private static bool InputStringIsCorrect(string text)

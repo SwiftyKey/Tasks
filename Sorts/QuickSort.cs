@@ -1,4 +1,4 @@
-﻿namespace Tasks.Sorts
+namespace Tasks.Sorts
 {
 	public class QuickSort<T> :ASort<T> where T : IComparable
 	{
@@ -6,11 +6,11 @@
 
 		private int Partition(T[] data, int start, int end)
 		{
-			var pivotIndex = data[end];
+			var pivot = data[end];
 			var storeIndex = start;
 
 			for (int i = start; i < end; i++)
-				if (Comparer.Compare(data[i], pivotIndex) > 0)
+				if (Comparer.Compare(data[i], pivot) > 0)
 				{
 					(data[i], data[storeIndex]) = (data[storeIndex], data[i]);
 					storeIndex++;

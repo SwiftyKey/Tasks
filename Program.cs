@@ -17,19 +17,24 @@ internal class MainClass
 		}
 
 		var processedString = StringHandler.ProcessString(inputText);
-		var counter = StringHandler.GetCountSymbols(processedString);
-		var largestSubstring = StringHandler.GetLargestSubstringStartsAndEndsWithVowel(processedString);
-		var sortedProcessedString = new string(sort.Sorting(processedString.ToArray()));
-
 		OutputString(processedString, "Обработання строка: ");
+
+		var counter = StringHandler.GetCountSymbols(processedString);
 		OutputCounter(counter);
+
+		var largestSubstring = StringHandler.GetLargestSubstringStartsAndEndsWithVowel(processedString);
 		OutputString(largestSubstring, "Наибольшая подстрока, начинающаяся и заканчивающаяся на гласную: ");
+
+		var sortedProcessedString = new string(sort.Sorting(processedString.ToArray()));
 		OutputString(sortedProcessedString, "Отсортированная обработанная строка: ");
+
+		var (shortenedProcessedString, removedCharIndex) = StringHandler.RemoveCharByRandomIndex(processedString);
+		OutputString(shortenedProcessedString, $"Обработанная строка с удаленным символом \'{processedString[removedCharIndex]}\' на позиции {removedCharIndex}: ");
 	}
 
 	private static ASort<char> GetSortType()
 	{
-		string choice;
+		string? choice;
 		do
 		{
 			var message = "Выберите желаемую сортировку (QuickSort - 0, TreeSort - 1):";
@@ -38,7 +43,7 @@ internal class MainClass
 		}
 		while (choice != "0" && choice != "1");
 
-		return choice switch { "0" => new QuickSort<char>(), "1" => new TreeSort<char>() };
+		return (choice == "0" ? new QuickSort<char>() : new TreeSort<char>());
 
 	}
 
