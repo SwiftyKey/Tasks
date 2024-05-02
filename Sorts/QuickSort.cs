@@ -1,4 +1,4 @@
-﻿namespace Tasks.Sorts
+namespace Tasks.Sorts
 {
 	public class QuickSort<T> :ASort<T> where T : IComparable
 	{

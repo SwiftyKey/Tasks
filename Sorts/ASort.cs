@@ -1,4 +1,4 @@
-﻿namespace Tasks.Sorts
+namespace Tasks.Sorts
 {
 	public class Comparer<T> where T : IComparable
 	{
