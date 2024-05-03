@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using WebTasks.Models;
 
 using Tasks;
@@ -10,7 +10,6 @@ namespace WebTasks.Controllers;
 [ApiController]
 public class ProcessedStringParametersController : ControllerBase
 {
-
 	/// <summary>
 	/// Если не подходящая строка:
 	///		HTTP ошибка 400 Bad Request.Сообщение об ошибке с информацией
@@ -36,7 +35,10 @@ public class ProcessedStringParametersController : ControllerBase
 	{
 		var (processedString, incorrectChars) = StringHandler.ProcessString(text);
 
-		if (incorrectChars != null) return BadRequest($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
+		if (incorrectChars?.Count == 1 && StringHandler.BlackList is not null) 
+			return BadRequest($"Введенная строка \'{text}\' содержится в черном списке: {String.Join(", ", StringHandler.BlackList)}");
+		if (incorrectChars is not null)
+			return BadRequest($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
 
 		ASort<char> sort;
 		switch (sortType)
@@ -50,6 +52,7 @@ public class ProcessedStringParametersController : ControllerBase
 			default:
 				return BadRequest("Такой сортировки нет. Выберите из следующего списка: 0 - QuickSort, 1 - TreeSort");
 		}
+
 		var shortened = StringHandler.RemoveCharByRandomIndex(processedString);
 
 		return Ok(new ProcessedStringParameters

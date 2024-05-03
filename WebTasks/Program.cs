@@ -1,8 +1,6 @@
-var builder = WebApplication.CreateBuilder(args);
+using WebTasks;
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var builder = DiContainerBuilder.BuildContainer(args);
 
 var app = builder.Build();
 

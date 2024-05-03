@@ -4,14 +4,21 @@ using Tasks.RandomNumber;
 
 namespace Tasks
 {
-	public class StringHandler
+	public static class StringHandler
 	{
+		public static IEnumerable<string>? BlackList { get; set; }
+
 		public static (string, List<string>?) ProcessString(string? text)
 		{
-			if (text == null) throw new ArgumentNullException(nameof(text));
+			if (text is null) throw new ArgumentNullException(nameof(text));
 
 			var (isCorrect, incorrectChars) = InputStringIsCorrect(text);
-			if (!isCorrect) return ("", incorrectChars);
+
+			if (!isCorrect)
+				return ("", incorrectChars);
+
+			if (BlackList is not null && BlackList.Any(blackText => blackText == text))
+				return ("", new List<string> { text });
 
 			var processedText = new StringBuilder();
 			if (text.Length % 2 == 0)

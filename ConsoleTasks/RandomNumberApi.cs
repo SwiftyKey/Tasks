@@ -1,8 +1,8 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 
 namespace Tasks.RandomNumber
 {
-	public class RandomNumberApi
+	public static class RandomNumberApi
 	{
 		static readonly HttpClient client = new();
 		public static string Url { get; set; } = "http://www.randomnumberapi.com/api/v1.0/random?";
