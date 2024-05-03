@@ -1,5 +1,6 @@
-using Tasks;
 using Tasks.Sorts;
+
+namespace Tasks.ConsoleTaks;
 
 internal class MainClass
 {
@@ -16,7 +17,14 @@ internal class MainClass
 			return;
 		}
 
-		var processedString = StringHandler.ProcessString(inputText);
+		var (processedString, incorrectChars) = StringHandler.ProcessString(inputText);
+
+		if (incorrectChars != null)
+		{
+			OutputIncorrectChars(inputText, incorrectChars);
+			return;
+		}
+
 		OutputString(processedString, "Обработання строка: ");
 
 		var counter = StringHandler.GetCountSymbols(processedString);
@@ -47,6 +55,11 @@ internal class MainClass
 
 	}
 
+	private static void OutputIncorrectChars(string text, List<string> incorrectChars)
+	{
+		Console.WriteLine($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
+	}
+
 	private static void OutputString(string text, string message)
 	{
 		if (text != "")
@@ -55,11 +68,8 @@ internal class MainClass
 
 	private static void OutputCounter(Dictionary<char, int> counter)
 	{
-		if (counter.Keys.Count != 0)
-		{
-			Console.WriteLine("Количество вхождений каждого символа:");
-			foreach (char key in counter.Keys)
-				Console.WriteLine($"{key}: {counter[key]}");
-		}
+		Console.WriteLine("Количество вхождений каждого символа:");
+		foreach (char key in counter.Keys)
+			Console.WriteLine($"{key}: {counter[key]}"); 
 	}
 }

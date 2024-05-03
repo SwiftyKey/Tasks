@@ -39,5 +39,7 @@ namespace Tasks.Sorts
 
 			return Sorting(newData, 0, data.Length - 1);
 		}
+
+		public override string ToString() => nameof(QuickSort<char>);
 	}
 }

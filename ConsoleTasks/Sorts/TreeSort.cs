@@ -46,5 +46,7 @@
 
 			return tree.Transform();
 		}
+
+		public override string ToString() => nameof(TreeSort<Char>);
 	}
 }

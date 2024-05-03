@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "Tasks.csproj", "{055573E2-5AA1-4789-BAA0-F1DDFACE7934}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "ConsoleTasks\Tasks.csproj", "{055573E2-5AA1-4789-BAA0-F1DDFACE7934}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTasks", "WebTasks\WebTasks.csproj", "{7DDF37EB-5400-4550-891B-59806B6B03F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{055573E2-5AA1-4789-BAA0-F1DDFACE7934} = {055573E2-5AA1-4789-BAA0-F1DDFACE7934}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{055573E2-5AA1-4789-BAA0-F1DDFACE7934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{055573E2-5AA1-4789-BAA0-F1DDFACE7934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{055573E2-5AA1-4789-BAA0-F1DDFACE7934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDF37EB-5400-4550-891B-59806B6B03F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDF37EB-5400-4550-891B-59806B6B03F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDF37EB-5400-4550-891B-59806B6B03F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDF37EB-5400-4550-891B-59806B6B03F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
