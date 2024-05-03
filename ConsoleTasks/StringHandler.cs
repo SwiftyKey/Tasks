@@ -6,11 +6,12 @@ namespace Tasks
 {
 	public class StringHandler
 	{
-		public static string ProcessString(string? text)
+		public static (string, List<string>?) ProcessString(string? text)
 		{
 			if (text == null) throw new ArgumentNullException(nameof(text));
 
-			if (text.Length == 0 || !InputStringIsCorrect(text)) return "";
+			var (isCorrect, incorrectChars) = InputStringIsCorrect(text);
+			if (!isCorrect) return ("", incorrectChars);
 
 			var processedText = new StringBuilder();
 			if (text.Length % 2 == 0)
@@ -27,7 +28,7 @@ namespace Tasks
 				processedText.Append(text);
 			}
 
-			return processedText.ToString();
+			return (processedText.ToString(), null);
 		}
 
 		public static Dictionary<char, int> GetCountSymbols(string text)
@@ -51,20 +52,13 @@ namespace Tasks
 			return (text.Remove(index, 1), index);
 		}
 
-		private static bool InputStringIsCorrect(string text)
+		private static (bool, List<string>) InputStringIsCorrect(string text)
 		{
 			Regex rg = new(@"[^a-z]");
 			var incorrectChars = rg.Matches(text).Select(x => x.Value).ToList();
 
-			if (incorrectChars.Count == 0) return true;
-
-			OutputIncorrectChars(text, incorrectChars);
-			return false;
+			return (incorrectChars.Count == 0, incorrectChars);
 		}
 
-		private static void OutputIncorrectChars(string text, List<string> incorrectChars)
-		{
-			Console.WriteLine($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
-		}
 	}
 }
