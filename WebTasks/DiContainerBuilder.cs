@@ -6,6 +6,7 @@ namespace WebTasks;
 public sealed class Settings
 {
 	public List<string>? BlackList { get; set; }
+	public int? ParallelLimit { get; set; }
 }
 
 public static class DiContainerBuilder
@@ -18,6 +19,8 @@ public static class DiContainerBuilder
 
 		RandomNumberApi.Url = randomApiUrl;
 		StringHandler.BlackList = settings?.BlackList;
+		if (settings?.ParallelLimit is not null)
+			RequestLimiter.Limit = (int)settings.ParallelLimit;
 
 		builder.Services.AddControllers();
 		builder.Services.AddEndpointsApiExplorer();

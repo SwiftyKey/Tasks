@@ -35,7 +35,7 @@ public class ProcessedStringParametersController : ControllerBase
 	{
 		var (processedString, incorrectChars) = StringHandler.ProcessString(text);
 
-		if (incorrectChars?.Count == 1 && StringHandler.BlackList is not null) 
+		if (incorrectChars?.Count == 1 && StringHandler.BlackList is not null && StringHandler.BlackList.Any(x => x == incorrectChars[0])) 
 			return BadRequest($"Введенная строка \'{text}\' содержится в черном списке: {String.Join(", ", StringHandler.BlackList)}");
 		if (incorrectChars is not null)
 			return BadRequest($"В введенной строке \'{text}\' имеются некорректные символы: {String.Join(", ", incorrectChars)}");
