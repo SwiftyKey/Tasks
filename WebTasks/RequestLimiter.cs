@@ -21,7 +21,7 @@ public class RequestLimiter
 		if (!semaphore.Wait(0))
 		{
 			context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
-			await context.Response.WriteAsync("Number of concurrent users exceeded."); //Выдает каракул на русском
+			await context.Response.WriteAsync("Number of concurrent users exceeded."); //Выдает каракули на русском
 			return;
 		}
 
