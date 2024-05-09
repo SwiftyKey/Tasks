@@ -3,6 +3,7 @@ using WebTasks;
 var builder = DiContainerBuilder.BuildContainer(args);
 
 var app = builder.Build();
+app.UseMiddleware<RequestLimiter>();
 
 if (app.Environment.IsDevelopment())
 {
